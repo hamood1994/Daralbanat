@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "926481717016",
+    "project_id": "daralbanat-8d972",
+    "storage_bucket": "daralbanat-8d972.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926481717016:android:aa5e3892da1f895f65706d",
+        "android_client_info": {
+          "package_name": "com.baitalnawras.Daralbanat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "926481717016-icaj8sq4cara280nma1d7dpi80ajfuu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOEyUwmTgPc3MJwuOQft0ywjCr2aMWlDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "926481717016-icaj8sq4cara280nma1d7dpi80ajfuu0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "926481717016-lnjt0cfup8ftgg19fmnsek1e1s9ol68o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.baitalnawras.Daralbanat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
