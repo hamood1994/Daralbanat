@@ -1,0 +1,40 @@
+
+name: daralbanat_final
+description: A splash screen webview Flutter app for daralbanat.com
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter: ^4.2.2
+  firebase_core: ^2.30.0
+  firebase_messaging: ^14.7.16
+  shared_preferences: ^2.2.2
+  font_awesome_flutter: ^10.6.0
+  url_launcher: ^6.2.6
+  curved_navigation_bar: ^1.0.3
+  flutter_lints: ^3.0.1
+  cloud_firestore: ^4.15.4
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/splash_logo.webp
+  fonts:
+    - family: ArabicTypesetting
+      fonts:
+        - asset: assets/fonts/ArabicTypesetting.ttf

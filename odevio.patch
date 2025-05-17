@@ -1,0 +1,185 @@
+diff --git a/ios/Flutter/Debug.xcconfig b/ios/Flutter/Debug.xcconfig
+index 0b2d479..dfd2626 100644
+--- a/ios/Flutter/Debug.xcconfig
++++ b/ios/Flutter/Debug.xcconfig
+@@ -1 +1,2 @@
++#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+ #include "Generated.xcconfig"
+diff --git a/ios/Flutter/Release.xcconfig b/ios/Flutter/Release.xcconfig
+index 0b2d479..a97381a 100644
+--- a/ios/Flutter/Release.xcconfig
++++ b/ios/Flutter/Release.xcconfig
+@@ -1 +1,2 @@
++#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+ #include "Generated.xcconfig"
+diff --git a/ios/Podfile b/ios/Podfile
+new file mode 100644
+index 0000000..e549ee2
+--- /dev/null
++++ b/ios/Podfile
+@@ -0,0 +1,43 @@
++# Uncomment this line to define a global platform for your project
++# platform :ios, '12.0'
++
++# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
++ENV['COCOAPODS_DISABLE_STATS'] = 'true'
++
++project 'Runner', {
++  'Debug' => :debug,
++  'Profile' => :release,
++  'Release' => :release,
++}
++
++def flutter_root
++  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
++  unless File.exist?(generated_xcode_build_settings_path)
++    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
++  end
++
++  File.foreach(generated_xcode_build_settings_path) do |line|
++    matches = line.match(/FLUTTER_ROOT\=(.*)/)
++    return matches[1].strip if matches
++  end
++  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
++end
++
++require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
++
++flutter_ios_podfile_setup
++
++target 'Runner' do
++  use_frameworks!
++
++  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
++  target 'RunnerTests' do
++    inherit! :search_paths
++  end
++end
++
++post_install do |installer|
++  installer.pods_project.targets.each do |target|
++    flutter_additional_ios_build_settings(target)
++  end
++end
+diff --git a/ios/Runner/Base.lproj/Main.storyboard b/ios/Runner/Base.lproj/Main.storyboard
+index bbb83ca..3337c8f 100644
+--- a/ios/Runner/Base.lproj/Main.storyboard
++++ b/ios/Runner/Base.lproj/Main.storyboard
+@@ -1,26 +1,29 @@
+-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+-    <dependencies>
+-        <deployment identifier="iOS"/>
+-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+-    </dependencies>
+-    <scenes>
+-        <!--Flutter View Controller-->
+-        <scene sceneID="tne-QT-ifu">
+-            <objects>
+-                <viewController id="BYZ-38-t0r" customClass="FlutterViewController" sceneMemberID="viewController">
+-                    <layoutGuides>
+-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+-                    </layoutGuides>
+-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+-                    </view>
+-                </viewController>
+-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+-            </objects>
+-        </scene>
+-    </scenes>
+-</document>
++<?xml version="1.0" encoding="UTF-8"?>
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
++    <device id="retina6_12" orientation="portrait" appearance="light"/>
++    <dependencies>
++        <deployment identifier="iOS"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
++        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
++    </dependencies>
++    <scenes>
++        <!--Flutter View Controller-->
++        <scene sceneID="tne-QT-ifu">
++            <objects>
++                <viewController id="BYZ-38-t0r" customClass="FlutterViewController" sceneMemberID="viewController">
++                    <layoutGuides>
++                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
++                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
++                    </layoutGuides>
++                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
++                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
++                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
++                    </view>
++                </viewController>
++                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
++            </objects>
++            <point key="canvasLocation" x="-26" y="-76"/>
++        </scene>
++    </scenes>
++</document>
+diff --git a/macos/Flutter/Flutter-Debug.xcconfig b/macos/Flutter/Flutter-Debug.xcconfig
+index f022c34..df4c964 100644
+--- a/macos/Flutter/Flutter-Debug.xcconfig
++++ b/macos/Flutter/Flutter-Debug.xcconfig
+@@ -1 +1,2 @@
++#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+ #include "ephemeral/Flutter-Generated.xcconfig"
+diff --git a/macos/Flutter/Flutter-Release.xcconfig b/macos/Flutter/Flutter-Release.xcconfig
+index f022c34..e79501e 100644
+--- a/macos/Flutter/Flutter-Release.xcconfig
++++ b/macos/Flutter/Flutter-Release.xcconfig
+@@ -1 +1,2 @@
++#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+ #include "ephemeral/Flutter-Generated.xcconfig"
+diff --git a/macos/Podfile b/macos/Podfile
+new file mode 100644
+index 0000000..29c8eb3
+--- /dev/null
++++ b/macos/Podfile
+@@ -0,0 +1,42 @@
++platform :osx, '10.14'
++
++# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
++ENV['COCOAPODS_DISABLE_STATS'] = 'true'
++
++project 'Runner', {
++  'Debug' => :debug,
++  'Profile' => :release,
++  'Release' => :release,
++}
++
++def flutter_root
++  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'ephemeral', 'Flutter-Generated.xcconfig'), __FILE__)
++  unless File.exist?(generated_xcode_build_settings_path)
++    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure \"flutter pub get\" is executed first"
++  end
++
++  File.foreach(generated_xcode_build_settings_path) do |line|
++    matches = line.match(/FLUTTER_ROOT\=(.*)/)
++    return matches[1].strip if matches
++  end
++  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Flutter-Generated.xcconfig, then run \"flutter pub get\""
++end
++
++require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
++
++flutter_macos_podfile_setup
++
++target 'Runner' do
++  use_frameworks!
++
++  flutter_install_all_macos_pods File.dirname(File.realpath(__FILE__))
++  target 'RunnerTests' do
++    inherit! :search_paths
++  end
++end
++
++post_install do |installer|
++  installer.pods_project.targets.each do |target|
++    flutter_additional_macos_build_settings(target)
++  end
++end
